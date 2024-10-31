@@ -1,0 +1,30 @@
+<div class="cover mb-4 d-flex align-items-center justify-content-center">
+  <div class="text-center text-black">
+    <h1>Buy or rent your next gen superpower</h1>
+    <h3 class="typed-js" data-controller="typed-js"></h3>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">Superpowers on sale</h3>
+  </div>
+  <div class="row">
+    <% @superpowers.each do |superpower| %>
+      <div class="co-12 col-sm-6 col-md-4 mb-3">
+        <%= link_to superpower_path(@superpower), class:"text-decoration-none" do %>"
+          <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
+            <%= superpower.title %>
+            <div class="card-product">
+                <img src="#" alt="superpower_img" />
+                <div class="card-product-infos">
+                    <h2>Superpower name</h2>
+                    <p>Product description with <strong>relevant info</strong> only.</p>
+                </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
