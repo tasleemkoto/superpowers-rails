@@ -10,18 +10,18 @@ class SuperpowersController < ApplicationController
     @booking = Booking.new
   end
   def create
-    
+
   end
 
   def update
-    
+
   end
 
   def edit
-    
+    @superpower = Superpower.find(params[:id])
   end
 
   def destroy
-    
+
   end
 end
