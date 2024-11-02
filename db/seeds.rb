@@ -52,7 +52,7 @@ superpowers.each do |power|
     user: User.all.sample,
     description: power[:description],
     category: power[:category],
-    selling_price: rand(100..500), # Optional: add a price for variety
-    renting_price: rand(100..500) # Optional: add a price for variety
+    selling_price: rand(500..1000), # Optional: add a price for variety
+    renting_price: rand(100..300) # Optional: add a price for variety
   )
 end
