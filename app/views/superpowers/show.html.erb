@@ -6,7 +6,8 @@
     </div>
     <div class="col-md-6">
       <h1><%= @superpower.title %></h1>
-      <p><strong>Price:</strong> $<%= @superpower.price %></p>
+      <p><strong>Renting Price:</strong> $<%= @superpower.renting_price %></p>
+      <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
       <p><strong>Description:</strong> <%= @superpower.description %></p>
       <p><strong>Category:</strong> <%= @superpower.category %></p>
       <%= link_to "Rent", superpowers_path, class: "btn btn-secondary mt-3" %>
