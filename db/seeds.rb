@@ -8,12 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
-User.destroy_all
 Superpower.destroy_all
+User.destroy_all
 Booking.destroy_all
 # Users Seeds
 15.times do
   User.create!(
+    username: Faker::Internet.username(specifier: 5..10),
     email: Faker::Internet.email,
     password: "password"
   )
@@ -51,6 +52,7 @@ superpowers.each do |power|
     user: User.all.sample,
     description: power[:description],
     category: power[:category],
-    price: rand(100..500) # Optional: add a price for variety
+    selling_price: rand(500..1000), # Optional: add a price for variety
+    renting_price: rand(100..300) # Optional: add a price for variety
   )
 end
