@@ -1,16 +1,20 @@
 class SuperpowersController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @superpowers = Superpower.all
   end
+  
   def new
     @user = User.current_user
     @superpower = Superpower.new
   end
+  
   def show
     @superpower = Superpower.find(params[:id])
     @booking = Booking.new
   end
+  
   def create
     @superpower = current_user.superpowers.build(superpower_params)
     if @superpower.save
@@ -21,15 +25,15 @@ class SuperpowersController < ApplicationController
   end
 
   def update
-    
+
   end
 
   def edit
-    
+    @superpower = Superpower.find(params[:id])
   end
 
   def destroy
-    
+
   end
 
   private
