@@ -1,0 +1,20 @@
+<%# <%= @bookings.inspect %>
+
+<%# 1. loop bookings and show each booking
+2 . make sure ki to p show seulment booking pu current user %>
+<h1>Your Bookings</h1>
+
+<% if @bookings.any? %>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <% if booking.user_id == @user.id %>
+        <li style="border: 2px solid purple;">
+          <strong>Start Date:</strong> <%= booking.start_date.strftime("%B %d, %Y") %><br>
+          <strong>End Date:</strong> <%= booking.end_date.strftime("%B %d, %Y") %><br>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No bookings.</p>
+<% end %>

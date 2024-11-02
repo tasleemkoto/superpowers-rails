@@ -8,9 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
+require 'date'
+
+Booking.destroy_all
 Superpower.destroy_all
 User.destroy_all
-Booking.destroy_all
+
+
 # Users Seeds
 15.times do
   User.create!(
@@ -54,5 +58,15 @@ superpowers.each do |power|
     category: power[:category],
     selling_price: rand(500..1000), # Optional: add a price for variety
     renting_price: rand(100..300) # Optional: add a price for variety
+  )
+end
+
+# loop: create fake bookings
+15.times do
+  Booking.create(
+    user: User.all.sample,
+    start_date: Date.today,
+    end_date: Date.today,
+    superpower: Superpower.all.sample
   )
 end
