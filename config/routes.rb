@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :superpowers do
     resources :bookings, only: [:new, :create, :show]
-    post 'rent', on: :member, as: :renting
-    post 'buy', on: :member
   end
   resources :bookings, only: [:edit, :index, :update, :destroy]
 end
