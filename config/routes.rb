@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  # resources :superpowers, only: [new:, create:]
-  post "superpowers/:id", to: "superpowers#create", as: :rentout_superpower
-  resources :superpowers do 
+  resources :superpowers do
     resources :bookings, only: [:new, :create, :show]
+    post 'rent', on: :member, as: :renting
+    post 'buy', on: :member
   end
   resources :bookings, only: [:edit, :index, :update, :destroy]
 end

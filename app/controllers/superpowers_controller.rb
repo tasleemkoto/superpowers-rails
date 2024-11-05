@@ -25,7 +25,12 @@ class SuperpowersController < ApplicationController
   end
 
   def update
-
+    @superpower = Superpower.find(params[:id])
+    if @superpower.update(superpower_params)
+      redirect_to @superpower, notice: "Superpower successfully updated!"
+    else
+      render :edit
+    end
   end
 
   def edit
@@ -33,7 +38,19 @@ class SuperpowersController < ApplicationController
   end
 
   def destroy
+    @superpower = Superpower.find(params[:id])
+    @superpower.destroy
+    redirect_to superpowers_path, notice: "Superpower was successfully deleted."
+  end
 
+  def rent
+    @superpower = Superpower.find(params[:id])
+    redirect_to @superpower, notice: "You have successfully rented this superpower!"
+  end
+
+  def buy
+    @superpower = Superpower.find(params[:id])
+    redirect_to @superpower, notice: "You have successfully purchased this superpower!"
   end
 
   private
