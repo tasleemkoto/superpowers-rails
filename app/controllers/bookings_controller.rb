@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
-    @user = current_user
+    @bookings = current_user.bookings
+    @superpowers = current_user.superpowers
+    @my_booking_requests = @superpowers.map(&:bookings).flatten
   end
 
   def new
@@ -13,11 +14,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @bookings = Booking.new(booking_params)
+    set_superpower
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    @booking.superpower = @superpower
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,8 +30,9 @@ class BookingsController < ApplicationController
   end
 
   def update
+    set_booking
     if @booking.update(booking_params)
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
       render :edit
     end
@@ -41,10 +46,14 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking =bookings.find(params[:id])
+    @booking = Booking.find(params[:id])
+  end
+
+  def set_superpower
+    @superpower = Superpower.find(params[:superpower_id])
   end
 
   def booking_params
-    params.require(:booking).permit(:user_id, :start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :status)
   end
 end
