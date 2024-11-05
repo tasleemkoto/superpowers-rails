@@ -17,10 +17,14 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :price %>
+    <%= form.label :Renting price %>
     <%= form.number_field :price, class: "form-control" %>
   </div>
 
+ <div class="mb-3">
+    <%= form.label :Selling price %>
+    <%= form.number_field :price, class: "form-control" %>
+  </div>
   <%= form.submit "Update Superpower", class: "btn btn-primary" %>
 <% end %>
 

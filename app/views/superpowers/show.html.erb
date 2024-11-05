@@ -10,8 +10,7 @@
       <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
       <p><strong>Description:</strong> <%= @superpower.description %></p>
       <p><strong>Category:</strong> <%= @superpower.category %></p>
-      <p><strong>Category:</strong> <%= @superpower.category %></p>
-
+      
       <div class="btn-group mt-3" role="group">
         <%= form_with url: renting_superpower_path(@superpower), method: :post do %>
           <%= submit_tag "Rent", class: "btn btn-secondary me-3" %>
@@ -19,6 +18,7 @@
         <%= form_with url: buy_superpower_path(@superpower), method: :post do %>
           <%= submit_tag "Buy", class: "btn btn-secondary me-3" %>
         <% end %>
+      <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>
       <%= link_to "Back to all superpowers", superpowers_path, class: "btn btn-secondary me-3" %>
       </div>
     </div>
