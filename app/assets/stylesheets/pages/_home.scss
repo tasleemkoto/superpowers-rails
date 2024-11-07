@@ -1,1 +1,143 @@
-// Specific CSS for your home-page
+
+body#container{
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ea7c4d;
+  padding-top: 60px;
+  //background-image: url('https://path-to-your-image.jpg'); /* replace with your image url */
+}
+
+.banner {
+  text-align: center;
+  padding: 20px;
+  max-width: 80%;
+}
+
+h1.title {
+  font-family: 'Macondo Swash Caps', cursive;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  //background-size: cover;
+  //background-position: center;
+  display: flex;
+  font-size: 5em;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
+.tagline {
+  font-size: 1.2em;
+  font-style: italic;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #333333;
+}
+
+
+.banner-content {
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  color: #333333;
+  text-decoration: none;
+  font-weight: bold;
+  background: #ffb400;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background-color: #caa85a;
+}
+
+.separator {
+  border: none;
+  height: 2px; // Thickness of the line
+  background-color: #FFFFFF; // Color of the line
+  margin: 2rem 0; // Spacing above and below the line
+  width: 80%; // Width of the line, you can adjust this
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.6;
+}
+
+// SCSS style for page index.html.erb
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px; // Add some spacing between cards
+}
+
+.col-12.col-sm-6.col-md-4 {
+  flex: 1 1 calc(33.333% - 10px); // 3 columns on desktop, with space between them
+  max-width: calc(33.333% - 10px);
+
+}
+
+.card-category {
+  background-color: #F2E9E4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s ease;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  margin: 0;
+
+  &:hover {
+    transform: translateY(-10px); // Slight lift effect on hover
+  }
+}
+
+.card-product {
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.card-product-infos {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  p {
+    font-size: 1em;
+    color: #666;
+    strong {
+      color: #000;
+    }
+  }
+}
+
+.text-decoration-none {
+  text-decoration: none;
+  color: inherit;
+}
