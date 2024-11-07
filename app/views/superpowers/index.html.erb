@@ -48,16 +48,17 @@
           </div>
         </div>
       </div>
-</div>
+ </div>
   </div>
   <div class="row">
     <% @superpowers.each do |superpower| %>
-      <div class="co-12 col-sm-6 col-md-4 mb-3">
+      <div class="col-12 col-sm-6 col-md-4 mb-3">
         <%= link_to superpower_path(superpower), class:"text-decoration-none" do %>
           <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
             <%= superpower.title %>
             <div class="card-product">
-                <img src="#" alt="superpower_img" />
+
+                <img src="https://placehold.co/600x400/000660/FFF" alt="superpower_img" />
                 <div class="card-product-infos">
                     <h2>Superpower name</h2>
                     <p>Product description with <strong>relevant info</strong> only.</p>
