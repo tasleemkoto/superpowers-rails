@@ -1,50 +1,74 @@
-// Specific CSS for your home-page
-
-* {
+body#container{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ea7c4d;
 }
 
 .banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  height: 100vh;
-  display: flex;
+  text-align: center;
+  color: #333;
+  padding: 20px;
+  max-width: 80%;
+  //background-image: url('https://path-to-your-image.jpg'); /* replace with your image url */
+  //background-size: cover;
+  //background-position: center;
+  //height: 100vh;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  //text-align: center;
+  //color: white;
+  //height: 100%;
+}
+
+h1.title {
+  color: black;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
+  //background-size: cover;
+  //background-position: center;
+  display: flex;
+  font-size: 5em;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
 }
 
-.banner h1 {
-  margin: 0;
+.tagline {
+  font-size: 1.2em;
+  font-style: italic;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(15, 15, 15);
+}
+
+
+.banner-content {
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
   color: #333333;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.btn-gradient {
-  color: #333333;
-  padding: 8px 24px;
-  border-radius: 4px;
-  font-weight: bold;
-  background: linear-gradient(#ffb400, #ffb400);
-  transition: background 0.3s ease;
-  border: 1px solid #F3BE42;
   text-decoration: none;
+  font-weight: bold;
+  background: #ffb400;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
-.btn-gradient:hover {
-  background: linear-gradient(#DB9D0C, #F3BE42);
-  color: white;
+.button:hover {
+  background-color: #0000ff;
 }
