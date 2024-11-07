@@ -1,0 +1,9 @@
+<h1>My account</h1>
+
+<div class="">
+  <h3><strong>Name:</strong> <%= current_user.username %></h3>
+  <h3><strong>Email:</strong> <%= current_user.email %></h3>
+  <h3><strong>Credits:</strong> <%= current_user.credits %> </h3>
+</div>
+
+<%= link_to 'Edit profile info', edit_user_registration_path , class: "btn btn-primary" %>
