@@ -70,5 +70,69 @@ h1.title {
 }
 
 .button:hover {
-  background-color: #0000ff;
+  background-color: #caa85a;
+}
+
+// SCSS style for page index.html.erb
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px; // Add some spacing between cards
+}
+
+.col-12.col-sm-6.col-md-4 {
+  flex: 1 1 calc(33.333% - 10px); // 3 columns on desktop, with space between them
+  max-width: calc(33.333% - 10px);
+
+}
+
+.card-category {
+  background-color: #F2E9E4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s ease;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  margin: 0;
+
+  &:hover {
+    transform: translateY(-10px); // Slight lift effect on hover
+  }
+}
+
+.card-product {
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.card-product-infos {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  p {
+    font-size: 1em;
+    color: #666;
+    strong {
+      color: #000;
+    }
+  }
+}
+
+.text-decoration-none {
+  text-decoration: none;
+  color: inherit;
 }
