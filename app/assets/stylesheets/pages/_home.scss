@@ -1,31 +1,24 @@
+
 body#container{
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ea7c4d;
+  padding-top: 60px;
+  //background-image: url('https://path-to-your-image.jpg'); /* replace with your image url */
 }
 
 .banner {
   text-align: center;
-  color: #333;
   padding: 20px;
   max-width: 80%;
-  //background-image: url('https://path-to-your-image.jpg'); /* replace with your image url */
-  //background-size: cover;
-  //background-position: center;
-  //height: 100vh;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
-  //text-align: center;
-  //color: white;
-  //height: 100%;
 }
 
 h1.title {
+  font-family: 'Macondo Swash Caps', cursive;
   color: black;
   align-items: center;
   justify-content: center;
@@ -44,7 +37,7 @@ h1.title {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: rgb(15, 15, 15);
+  color: #333333;
 }
 
 
@@ -71,6 +64,18 @@ h1.title {
 
 .button:hover {
   background-color: #caa85a;
+}
+
+.separator {
+  border: none;
+  height: 2px; // Thickness of the line
+  background-color: #FFFFFF; // Color of the line
+  margin: 2rem 0; // Spacing above and below the line
+  width: 80%; // Width of the line, you can adjust this
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.6;
 }
 
 // SCSS style for page index.html.erb
