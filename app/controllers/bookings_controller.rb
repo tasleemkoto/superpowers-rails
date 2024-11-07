@@ -3,7 +3,8 @@ class BookingsController < ApplicationController
   def index
     @bookings = current_user.bookings
     @superpowers = current_user.superpowers
-    @my_booking_requests = @superpowers.map(&:bookings).flatten
+    booking_requests = @superpowers.map(&:bookings).flatten
+    @my_booking_requests = booking_requests.select { |booking| booking.status == "pending" }
   end
 
   def new
@@ -41,40 +42,41 @@ class BookingsController < ApplicationController
   end
 
   def update
-    if booking_params[:status] == "accepted" && @booking.update(booking_params)
-      transfer_credits
-      redirect_to bookings_path, notice: "Booking accepted, and credits transferred successfully."
-    elsif @booking.update(booking_params)
-      redirect_to bookings_path, notice: "Booking updated successfully."
+    if @booking.update(booking_params)
+      if booking_params[:status] == "accepted" 
+        transfer_credits
+        redirect_to bookings_path, notice: "Booking accepted, and credits transferred successfully."
+      else
+         redirect_to bookings_path, notice: "Booking rejected!"
+      end
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @bookings.destroy
+    @booking.destroy
     redirect_to bookings_path
   end
 
   private
 
   def transfer_credits
-    if @booking.status == "accepted"
-      rental_days = (@booking.end_date - @booking.start_date).to_i
-      total_price = rental_days * @booking.superpower.renting_price
-  
-      if current_user.credits >= total_price
-        ActiveRecord::Base.transaction do
-          current_user.update!(credits: current_user.credits - total_price)
-          @booking.superpower.user.update!(credits: @booking.superpower.user.credits + total_price)
-        end
-      else
-        flash[:alert] = "Not enough credits for this transaction!."
-        redirect_to bookings_path
-      end
+    rental_days = (@booking.end_date - @booking.start_date).to_i
+    total_price = rental_days * @booking.superpower.renting_price
+    puts "Rental days: #{rental_days}, Total price: #{total_price}"
+    puts "Current user credits before transfer: #{current_user.credits}"
+    if current_user.credits >= total_price
+        current_user_credits = current_user.credits + total_price
+        current_user.update(credits: current_user_credits)
+        puts "Current user credits after transfer: #{current_user.reload.credits}"
+        testi = @booking.user.credits - total_price
+        @booking.user.update(credits: testi)
+        puts "Superpower owner credits after transfer: #{@booking.user.reload.credits}"
+    else
+        puts "Not enough credits to transfer."
     end
   end
-
   def set_booking
     @booking = Booking.find(params[:id])
   end
