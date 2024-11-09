@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create, :show]
   end
   resources :bookings, only: [:edit, :index, :update, :destroy]
+  post 'buy_superpower/:superpower_id', to: "bookings#buy", as: :buy_superpower
 end

@@ -18,8 +18,9 @@
           <%= f.input :start_date  %>
           <%= f.input :end_date  %>
           <%= submit_tag "Rent", class: "button me-3" %>
-          <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
         <% end %>
+        <%= link_to 'Buy Now', buy_superpower_path(@superpower), method: :post, class: "button me-3" %>
+        <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
 
         <% if current_user == @superpower.user  %>
           <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>

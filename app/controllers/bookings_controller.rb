@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:update, :destroy]
+  before_action :set_superpower, only: [:create, :buy]
   def index
     @bookings = current_user.bookings
     @superpowers = current_user.superpowers
@@ -16,7 +17,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    set_superpower
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.superpower = @superpower
@@ -59,22 +59,45 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
+  def buy
+    @buyer = current_user
+    @seller = @superpower.user 
+
+      if @buyer.credits >= @superpower.selling_price  
+        @buyer.update(credits: @buyer.credits - @superpower.selling_price)
+        @seller.update(credits: @seller.credits + @superpower.selling_price)
+
+        @booking = @buyer.bookings.create(superpower: @superpower, status: 'potential buyer')
+
+        if @booking.persisted?
+          redirect_to @superpower, notice: "You have successfully purchased this superpower!"
+        else
+          redirect_to @superpower, alert: "Error occured in buying this superpower. Try again later."
+        end
+      else
+        redirect_to @superpower, alert: "You do not have enough credits to buy this superpower."
+      end
+  end
   private
 
   def transfer_credits
+
     rental_days = (@booking.end_date - @booking.start_date).to_i
-    total_price = rental_days * @booking.superpower.renting_price
-    puts "Rental days: #{rental_days}, Total price: #{total_price}"
-    puts "Current user credits before transfer: #{current_user.credits}"
-    if current_user.credits >= total_price
-        current_user_credits = current_user.credits + total_price
-        current_user.update(credits: current_user_credits)
-        puts "Current user credits after transfer: #{current_user.reload.credits}"
-        testi = @booking.user.credits - total_price
-        @booking.user.update(credits: testi)
-        puts "Superpower owner credits after transfer: #{@booking.user.reload.credits}"
+    if rental_days > 1
+      total_price = rental_days * @booking.superpower.renting_price
     else
-        puts "Not enough credits to transfer."
+      total_price = @booking.superpower.selling_price
+    
+      if current_user.credits >= total_price
+          current_user_credits = current_user.credits + total_price
+          current_user.update(credits: current_user_credits)
+          puts "Current user credits after transfer: #{current_user.reload.credits}"
+          testi = @booking.user.credits - total_price
+          @booking.user.update(credits: testi)
+          puts "Superpower owner credits after transfer: #{@booking.user.reload.credits}"
+      else
+          puts "Not enough credits to transfer."
+      end
     end
   end
   def set_booking
