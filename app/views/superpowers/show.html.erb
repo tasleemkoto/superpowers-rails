@@ -1,27 +1,36 @@
 <div class ="container_show py-15" >
   <div class="row_show">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <img src="https://i.pinimg.com/736x/bb/34/44/bb3444462e157ebfe2eb7e7011e929a2.jpg" alt="<%= @superpower.title %>" class="img-fluid rounded">
     </div>
-  </div>
-  <div class="col-md-7">
-    <h1><%= @superpower.title %></h1>
-    <p><strong>Renting Price:</strong> $<%= @superpower.renting_price %></p>
-    <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
-    <p><strong>Description:</strong> <%= @superpower.description %></p>
-    <p><strong>Category:</strong> <%= @superpower.category %></p>
-    <p><strong>owned by:</strong> <%= @superpower.user.username %></p>
-    <div class="btn-group mt-3" role="group">
-      <%= simple_form_for [@superpower, @booking]  do |f| %>
-        <%= f.input :start_date  %>
-        <%= f.input :end_date  %>
-        <%= submit_tag "Rent", class: "button me-3" %>
-        <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
-      <% end %>
+    <div class="col-md-6">
+      <h1><%= @superpower.title %></h1>
+      <p><strong>Renting Price:</strong> $<%= @superpower.renting_price %></p>
+      <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
+      <p><strong>Description:</strong> <%= @superpower.description %></p>
+      <p><strong>Category:</strong> <%= @superpower.category %></p>
 
-      <% if current_user == @superpower.user  %>
-        <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>
-      <% end %>
+      <p><strong>owned by:</strong> <%= @superpower.user.username %></p>
+
+    </div>
+  </div>
+      <div class="btn-group mt-3" role="group">
+        <%= simple_form_for [@superpower, @booking]  do |f| %>
+          <%= f.input :start_date  %>
+          <%= f.input :end_date  %>
+          <%= submit_tag "Rent", class: "button me-3" %>
+        <% end %>
+
+        <%= form_with url: buy_superpower_path(@superpower), method: :post do %>
+          <%= submit_tag "Buy Now", class: "button me-3" %>
+        <% end %>
+
+        <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
+
+
+        <% if current_user == @superpower.user  %>
+          <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>
+        <% end %>
     </div>
   </div>
 </div>
