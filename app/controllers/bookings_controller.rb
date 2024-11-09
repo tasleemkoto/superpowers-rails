@@ -61,32 +61,40 @@ class BookingsController < ApplicationController
 
   def buy
     @buyer = current_user
-    @seller = @superpower.user 
+    @seller = @superpower.user
 
-      if @buyer.credits >= @superpower.selling_price  
-        @buyer.update(credits: @buyer.credits - @superpower.selling_price)
-        @seller.update(credits: @seller.credits + @superpower.selling_price)
+    if @buyer.credits >= @superpower.selling_price
+      @buyer.update(credits: @buyer.credits - @superpower.selling_price)
+      @seller.update(credits: @seller.credits + @superpower.selling_price)
 
-        @booking = @buyer.bookings.create(superpower: @superpower, status: 'potential buyer')
+      # Create a booking record for this purchase, with default dates
+      @booking = @buyer.bookings.create(
+        superpower: @superpower,
+        status: 'purchased',
+        start_date: Date.today,  # Set a default date if needed
+        end_date: Date.today      # or use nil if not relevant
+      )
 
-        if @booking.persisted?
-          redirect_to @superpower, notice: "You have successfully purchased this superpower!"
-        else
-          redirect_to @superpower, alert: "Error occured in buying this superpower. Try again later."
-        end
+      if @booking.persisted?
+        redirect_to @superpower, notice: "You have successfully purchased this superpower!"
       else
-        redirect_to @superpower, alert: "You do not have enough credits to buy this superpower."
+        redirect_to @superpower, alert: "An error occurred while recording the purchase. Please try again."
       end
+    else
+    remaining_balance = @buyer.credits
+    required_balance = @superpower.selling_price
+    flash[:alert] = "You do not have enough credits to buy this superpower. Your balance: $#{remaining_balance}, required: $#{required_balance}."
+    redirect_to @superpower
+    end
   end
   private
 
   def transfer_credits
 
     rental_days = (@booking.end_date - @booking.start_date).to_i
-    if rental_days > 1
+    if rental_days>1
+    
       total_price = rental_days * @booking.superpower.renting_price
-    else
-      total_price = @booking.superpower.selling_price
     
       if current_user.credits >= total_price
           current_user_credits = current_user.credits + total_price
@@ -98,6 +106,8 @@ class BookingsController < ApplicationController
       else
           puts "Not enough credits to transfer."
       end
+    else
+      puts "Select another end date!"
     end
   end
   def set_booking
