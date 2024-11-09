@@ -5,6 +5,19 @@
   </div>
 </div>
 
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+<%= form_with url: superpowers_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search for your superpowers"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary", style: "background-color: #ffb400; border:none;" %>
+    <% end %>
+   </div>
+</div>
+
 <div class="container py-5">
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h2 class="index-title">Superpower Envy</h2>

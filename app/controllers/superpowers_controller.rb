@@ -2,18 +2,21 @@ class SuperpowersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @superpowers = Superpower.all
+     if params[:query].present?
+       @superpowers = @superpowers.where(title: params[:query])
+     end
   end
-  
+
   def new
     @user = User.current_user
     @superpower = Superpower.new
   end
-  
+
   def show
     @superpower = Superpower.find(params[:id])
     @booking = Booking.new
   end
-  
+
   def create
     @superpower = current_user.superpowers.build(superpower_params)
     if @superpower.save
