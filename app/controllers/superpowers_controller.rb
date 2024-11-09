@@ -3,7 +3,7 @@ class SuperpowersController < ApplicationController
   def index
     @superpowers = Superpower.all
      if params[:query].present?
-       @superpowers = @superpowers.where(title: params[:query])
+      @superpowers = @superpowers.where("title ILIKE ?", "%#{params[:query]}%")
      end
   end
 
