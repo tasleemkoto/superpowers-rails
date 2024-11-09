@@ -1,28 +1,27 @@
-<h1>superpower</h1>
-<div class ="container py-15" >
+<div class ="container_show py-15" >
   <div class="row_show">
     <div class="col-md-6">
-           <img src="https://images.unsplash.com/photo-1534882974931-c092f1562251?q=80&w=1776&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="<%= @superpower.title %>" class="img-fluid rounded">
-    </div>
-    <div class="col-md-6">
-      <h1><%= @superpower.title %></h1>
-      <p><strong>Renting Price:</strong> $<%= @superpower.renting_price %></p>
-      <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
-      <p><strong>Description:</strong> <%= @superpower.description %></p>
-      <p><strong>Category:</strong> <%= @superpower.category %></p>
-
+      <img src="https://i.pinimg.com/736x/bb/34/44/bb3444462e157ebfe2eb7e7011e929a2.jpg" alt="<%= @superpower.title %>" class="img-fluid rounded">
     </div>
   </div>
-      <div class="btn-group mt-3" role="group">
-        <%= simple_form_for [@superpower, @booking]  do |f| %>
-          <%= f.input :start_date  %>
-          <%= f.input :end_date  %>
-          <%= submit_tag "Rent", class: "button me-3" %>
-          <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
-        <% end %>
+  <div class="col-md-7">
+    <h1><%= @superpower.title %></h1>
+    <p><strong>Renting Price:</strong> $<%= @superpower.renting_price %></p>
+    <p><strong>Selling Price:</strong> $<%= @superpower.selling_price %></p>
+    <p><strong>Description:</strong> <%= @superpower.description %></p>
+    <p><strong>Category:</strong> <%= @superpower.category %></p>
+    <p><strong>owned by:</strong> <%= @superpower.user.username %></p>
+    <div class="btn-group mt-3" role="group">
+      <%= simple_form_for [@superpower, @booking]  do |f| %>
+        <%= f.input :start_date  %>
+        <%= f.input :end_date  %>
+        <%= submit_tag "Rent", class: "button me-3" %>
+        <%= link_to "Back to all superpowers", superpowers_path, class: "button me-3" %>
+      <% end %>
 
-        <% if current_user == @superpower.user  %>
-          <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>
-        <% end %>
-      </div>
+      <% if current_user == @superpower.user  %>
+        <%= link_to "Edit", edit_superpower_path(@superpower), class: "btn btn-primary me-3" %>
+      <% end %>
+    </div>
+  </div>
 </div>
