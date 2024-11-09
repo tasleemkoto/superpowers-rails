@@ -6,9 +6,18 @@ body#container{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ea7c4d;
+ // background-color: #4dead5;
   padding-top: 60px;
-  //background-image: url('https://path-to-your-image.jpg'); /* replace with your image url */
+  background-image: url('https://i.pinimg.com/736x/1f/be/df/1fbedfe7024195d11260c11129119c58.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.img_container {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;object-fit: cover;
 }
 
 .banner {
@@ -23,8 +32,6 @@ h1.title {
   align-items: center;
   justify-content: center;
   text-align: center;
-  //background-size: cover;
-  //background-position: center;
   display: flex;
   font-size: 5em;
   margin-bottom: 10px;
@@ -86,6 +93,18 @@ h1.title {
   gap: 10px; // Add some spacing between cards
 }
 
+.index-title {
+  font-family: 'Macondo Swash Caps', cursive;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  font-size: 3em;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
 .col-12.col-sm-6.col-md-4 {
   flex: 1 1 calc(33.333% - 10px); // 3 columns on desktop, with space between them
   max-width: calc(33.333% - 10px);
@@ -102,8 +121,7 @@ h1.title {
   transition: transform 0.3s ease;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   margin: 0;
-
-  &:hover {
+    &:hover {
     transform: translateY(-10px); // Slight lift effect on hover
   }
 }
